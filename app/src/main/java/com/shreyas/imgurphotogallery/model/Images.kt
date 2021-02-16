@@ -1,0 +1,45 @@
+package com.shreyas.imgurphotogallery.model
+
+import java.io.Serializable
+
+data class Images(
+    val id: String,
+    val title: String,
+    val description: String?,
+    val datetime: String,
+    val type: String,
+    val animated: Boolean,
+    val width: Int,
+    val height: Int,
+    val size: Long,
+    val views: Long,
+    val bandwidth: Long,
+    val vote: String?,
+    val favorite: Boolean,
+    val nsfw: Boolean?,
+    val section: String?,
+    val account_url: String?,
+    val account_id: Long,
+    val is_ad: Boolean,
+    val in_most_viral: Boolean,
+    val has_sound: Boolean,
+    val tags: List<Tags>,
+    val ad_type: Int,
+    val ad_url: String,
+    val edited: String,
+    val in_gallery: Boolean,
+    val link: String,
+    val mp4_size: Long,
+    val mp4: String,
+    val gifv: String,
+    val hls: String,
+    val processing: Processing,
+    val comment_count: Long,
+    val favorite_count: Long,
+    val ups: Int?,
+    val downs: Int?,
+    val points: Int?,
+    val score: Int?,
+) : Serializable {
+
+}

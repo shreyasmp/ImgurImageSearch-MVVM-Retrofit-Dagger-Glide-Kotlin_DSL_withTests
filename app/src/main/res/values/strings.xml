@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ImgurPhotoGallery</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Image Search List Fragment</string>
+    <string name="second_fragment_label">Image Detail Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="loading_images">Loading Images</string>
+    <string name="image_list">Image List</string>
+    <string name="search_hint">Search</string>
+
+    <string name="image_description">Searched Image</string>
+</resources>
