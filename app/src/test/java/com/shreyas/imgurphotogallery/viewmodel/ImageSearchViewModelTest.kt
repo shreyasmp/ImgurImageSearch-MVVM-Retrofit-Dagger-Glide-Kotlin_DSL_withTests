@@ -1,4 +1,4 @@
-package viewmodel
+package com.shreyas.imgurphotogallery.viewmodel
 
 import android.os.Looper
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,6 @@ import com.shreyas.imgurphotogallery.base.BaseViewModelTest
 import com.shreyas.imgurphotogallery.model.ImgurResponse
 import com.shreyas.imgurphotogallery.util.TestJsonUtils.getObjectFromJsonFile
 import com.shreyas.imgurphotogallery.util.testObserver
-import com.shreyas.imgurphotogallery.viewmodel.ImageSearchViewModel
 import io.mockk.impl.annotations.SpyK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
