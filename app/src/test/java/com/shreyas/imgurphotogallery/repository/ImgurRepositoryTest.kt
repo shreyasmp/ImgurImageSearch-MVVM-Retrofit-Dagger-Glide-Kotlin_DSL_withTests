@@ -1,11 +1,11 @@
 package com.shreyas.imgurphotogallery.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.google.common.truth.Truth.assertThat
 import com.shreyas.imgurphotogallery.base.MockServerBaseTest
 import com.shreyas.imgurphotogallery.service.IImgurPhotoService
 import com.shreyas.imgurphotogallery.utils.ResultWrapper
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
@@ -39,8 +39,8 @@ class ImgurRepositoryTest : MockServerBaseTest() {
             when (val result = repository.getImgurImageListAsSearched("dogs")) {
                 is ResultWrapper.SUCCESS -> {
                     val response = result.value.value
-                    assertNotNull(response)
-                    assertEquals(response?.data?.size, 60)
+                    assertThat(response).isNotNull()
+                    assertThat(response?.data?.size).isEqualTo(60)
                 }
             }
         }
@@ -53,8 +53,8 @@ class ImgurRepositoryTest : MockServerBaseTest() {
             when (val result = repository.getImgurImageListAsSearched("dogs")) {
                 is ResultWrapper.SUCCESS -> {
                     val response = result.value.value
-                    assertNotNull(response)
-                    assertEquals(response?.data?.size, 0)
+                    assertThat(response).isNotNull()
+                    assertThat(response?.data?.size).isEqualTo(0)
                 }
             }
         }
@@ -64,13 +64,13 @@ class ImgurRepositoryTest : MockServerBaseTest() {
     fun `given response as SUCCESS while fetching image search list`() {
         runBlocking {
             mockHttpResponseFromFile(
-                "imgur_response_not_success.json",
-                HttpURLConnection.HTTP_NOT_FOUND
+                    "imgur_response_not_success.json",
+                    HttpURLConnection.HTTP_NOT_FOUND
             )
             when (val result = repository.getImgurImageListAsSearched("dogs")) {
                 is ResultWrapper.SUCCESS -> {
-                    assertNotNull(result.value.value)
-                    assertEquals(result.value.value?.status, 404)
+                    assertThat(result.value.value).isNotNull()
+                    assertThat(result.value.value?.status).isEqualTo(404)
                 }
             }
         }
@@ -84,7 +84,7 @@ class ImgurRepositoryTest : MockServerBaseTest() {
                 is ResultWrapper.FAILURE -> {
                     assertNotNull(result)
                     val expectedResponse = ResultWrapper.FAILURE(null)
-                    assertEquals(expectedResponse.code, (result).code)
+                    assertThat(expectedResponse.code).isEqualTo((result).code)
                 }
             }
         }
