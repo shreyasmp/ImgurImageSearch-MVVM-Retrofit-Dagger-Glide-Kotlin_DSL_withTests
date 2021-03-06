@@ -16,6 +16,8 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.robolectric.Shadows
 import retrofit2.HttpException
 
@@ -48,8 +50,8 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
     @Test
     fun `test image list live data success`() {
         val searchedImageList = getObjectFromJsonFile(
-                jsonFile = "imgur_response_success.json",
-                tClass = ImgurResponse::class.java
+            jsonFile = "imgur_response_success.json",
+            tClass = ImgurResponse::class.java
         )
         viewModel._imageSearchResponse.value = searchedImageList
         val imageSearchedListLiveData = viewModel.imageSearchResponse.testObserver()
@@ -76,6 +78,11 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
             Shadows.shadowOf(Looper.getMainLooper()).idle()
             assertThat(viewModel.imageSearchResponse.value).isNull()
             assertThat(viewModel.imageSearchResponse.value).isEqualTo(imgurList)
+
+            verify(
+                imageListResponseObserver,
+                times(0)
+            ).onChanged(viewModel.imageSearchResponse.value)
         }
     }
 
@@ -91,6 +98,11 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
             Shadows.shadowOf(Looper.getMainLooper()).idle()
             assertThat(viewModel.imageSearchResponse.value).isNull()
             assertThat(viewModel.imageSearchResponse.value).isEqualTo(exception.message())
+
+            verify(
+                imageListResponseObserver,
+                times(0)
+            ).onChanged(viewModel.imageSearchResponse.value)
         }
     }
 
