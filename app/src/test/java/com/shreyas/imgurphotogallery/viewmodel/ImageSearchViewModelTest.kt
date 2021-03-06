@@ -12,12 +12,10 @@ import com.shreyas.imgurphotogallery.util.testObserver
 import io.mockk.impl.annotations.SpyK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.robolectric.Shadows
 import retrofit2.HttpException
 
@@ -34,7 +32,6 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
     override fun setup() {
         super.setup()
         viewModel = ImageSearchViewModel(repository)
-        MockitoAnnotations.openMocks(this)
     }
 
     @Test
@@ -43,7 +40,7 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
     }
 
     @Test
-    fun `test image list live data is null`() {
+    fun `test image list live data is empty`() {
         val searchedImageLiveData = viewModel.imageSearchResponse.testObserver()
         assertThat(searchedImageLiveData.observedValues).isEmpty()
     }
@@ -51,8 +48,8 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
     @Test
     fun `test image list live data success`() {
         val searchedImageList = getObjectFromJsonFile(
-            jsonFile = "imgur_response_success.json",
-            tClass = ImgurResponse::class.java
+                jsonFile = "imgur_response_success.json",
+                tClass = ImgurResponse::class.java
         )
         viewModel._imageSearchResponse.value = searchedImageList
         val imageSearchedListLiveData = viewModel.imageSearchResponse.testObserver()
@@ -77,8 +74,8 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
             }
             viewModel.fetchSearchedImageList("dogs")
             Shadows.shadowOf(Looper.getMainLooper()).idle()
-            Assert.assertNull(viewModel.imageSearchResponse.value)
-            Assert.assertEquals(imgurList, viewModel.imageSearchResponse.value)
+            assertThat(viewModel.imageSearchResponse.value).isNull()
+            assertThat(viewModel.imageSearchResponse.value).isEqualTo(imgurList)
         }
     }
 
@@ -92,8 +89,8 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
             }
             viewModel.fetchSearchedImageList("dogs")
             Shadows.shadowOf(Looper.getMainLooper()).idle()
-            Assert.assertNull(viewModel.imageSearchResponse.value)
-            Assert.assertEquals(exception.message(), viewModel.imageSearchResponse.value)
+            assertThat(viewModel.imageSearchResponse.value).isNull()
+            assertThat(viewModel.imageSearchResponse.value).isEqualTo(exception.message())
         }
     }
 

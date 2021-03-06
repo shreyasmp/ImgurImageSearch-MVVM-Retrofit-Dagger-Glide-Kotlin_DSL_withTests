@@ -1,7 +1,6 @@
 package com.shreyas.imgurphotogallery.base
 
 import android.app.Application
-import android.content.res.Resources
 import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
@@ -17,7 +16,6 @@ import org.junit.runner.Description
 import org.junit.runner.RunWith
 import org.junit.runners.model.Statement
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
@@ -57,15 +55,12 @@ abstract class BaseViewModelTest {
 
     val application: Application = ApplicationProvider.getApplicationContext()
 
-    lateinit var resources: Resources
-
     @Mock
     lateinit var repository: ImgurRepository
 
     @Before
     open fun setup() {
         MockitoAnnotations.openMocks(this)
-        resources = Mockito.mock(Resources::class.java)
     }
 
     @After
