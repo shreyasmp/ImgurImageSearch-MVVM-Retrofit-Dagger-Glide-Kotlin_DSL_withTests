@@ -2,6 +2,7 @@ package com.shreyas.imgurphotogallery.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.VisibleForTesting
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,16 +13,17 @@ import com.shreyas.imgurphotogallery.view.callback.ImageListItemClickListener
 
 class ImagesRecyclerViewAdapter() :
     RecyclerView.Adapter<ImagesRecyclerViewAdapter.ImageViewHolder>() {
+    
+    @VisibleForTesting
+    internal lateinit var imageList: List<Images>
 
-    companion object {
-        private val TAG = ImagesRecyclerViewAdapter::class.java.simpleName
-    }
+    private lateinit var imageListItemClickListener: ImageListItemClickListener
 
-    private lateinit var imageList: List<Images>
-    lateinit var imageListItemClickListener: ImageListItemClickListener
-
-    constructor(imageList: List<Images>, clickListener: ImageListItemClickListener) : this() {
-        this.imageList = imageList
+    constructor(
+        listOfImages: MutableList<Images>,
+        clickListener: ImageListItemClickListener
+    ) : this() {
+        imageList = listOfImages
         imageListItemClickListener = clickListener
     }
 
@@ -51,4 +53,9 @@ class ImagesRecyclerViewAdapter() :
     }
 
     override fun getItemCount(): Int = imageList.size
+
+    fun setImgurImages(listOfImages: List<Images>) {
+        imageList = listOfImages
+        notifyDataSetChanged()
+    }
 }

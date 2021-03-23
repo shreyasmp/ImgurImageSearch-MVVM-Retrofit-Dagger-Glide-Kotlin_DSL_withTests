@@ -137,4 +137,5 @@ dependencies {
     androidTestImplementation(AppDependencies.extJUnit)
     androidTestImplementation(AppDependencies.espressoCore)
     androidTestImplementation(AppDependencies.espressoContrib)
+    androidTestImplementation(AppDependencies.mockk)
 }

@@ -1,6 +1,7 @@
 package com.shreyas.imgurphotogallery.view
 
 import android.os.Build
+import android.view.View
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
@@ -30,5 +31,11 @@ class MainActivityTest {
     fun `recreate activity`() {
         val test = launch(MainActivity::class.java)
         test.recreate()
+    }
+
+    @Test
+    fun `test activity view components are visible`() {
+        assertThat(activity.binding.mainLayout.visibility).isEqualTo(View.VISIBLE)
+        assertThat(activity.binding.mainToolbar.visibility).isEqualTo(View.VISIBLE)
     }
 }

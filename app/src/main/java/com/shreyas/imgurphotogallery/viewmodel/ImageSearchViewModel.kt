@@ -1,6 +1,7 @@
 package com.shreyas.imgurphotogallery.viewmodel
 
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -20,7 +21,8 @@ class ImageSearchViewModel @Inject constructor(repository: ImgurRepository) :
         private val TAG = ImageSearchViewModel::class.java.simpleName
     }
 
-    val _imageSearchResponse: MutableLiveData<ImgurResponse> = MutableLiveData()
+    @VisibleForTesting
+    internal val _imageSearchResponse: MutableLiveData<ImgurResponse> = MutableLiveData()
     val imageSearchResponse: LiveData<ImgurResponse> = _imageSearchResponse
 
     fun fetchSearchedImageList(searchedString: String) {
