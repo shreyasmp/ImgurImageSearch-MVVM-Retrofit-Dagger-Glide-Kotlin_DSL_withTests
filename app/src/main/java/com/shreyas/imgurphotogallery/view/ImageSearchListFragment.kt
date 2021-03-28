@@ -75,7 +75,7 @@ class ImageSearchListFragment : BaseFragment<ImageSearchViewModel>(), ImageListI
         inflater.inflate(R.menu.menu_main, menu)
         val searchViewItem = menu.findItem(R.id.action_search)
         val searchView = searchViewItem.actionView as SearchView
-        searchView.queryHint = getString(R.string.search_hint)
+        searchView.queryHint = context?.getString(R.string.search_hint)
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 

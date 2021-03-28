@@ -1,18 +1,23 @@
 package com.shreyas.imgurphotogallery.view
 
 import android.os.Build
+import android.os.Looper
 import android.view.View
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
+import com.shreyas.nycschools.runner.ImgurRobolectricTestRunner
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
+import org.robolectric.Shadows
 import org.robolectric.annotation.Config
+import org.robolectric.annotation.LooperMode
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(ImgurRobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.O_MR1])
+@LooperMode(LooperMode.Mode.LEGACY)
 class MainActivityTest {
 
     private lateinit var activity: MainActivity
@@ -20,6 +25,7 @@ class MainActivityTest {
     @Before
     fun setUp() {
         activity = Robolectric.buildActivity(MainActivity::class.java).create().visible().get()
+        Shadows.shadowOf(Looper.getMainLooper()).idle()
     }
 
     @Test

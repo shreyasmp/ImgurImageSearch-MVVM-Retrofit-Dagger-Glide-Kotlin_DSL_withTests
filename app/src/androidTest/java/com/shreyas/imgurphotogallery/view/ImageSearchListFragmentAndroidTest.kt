@@ -19,7 +19,7 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class ImageSearchListFragmentTest {
+class ImageSearchListFragmentAndroidTest {
 
     @get:Rule
     val activityTestRule = ActivityScenarioRule(MainActivity::class.java)

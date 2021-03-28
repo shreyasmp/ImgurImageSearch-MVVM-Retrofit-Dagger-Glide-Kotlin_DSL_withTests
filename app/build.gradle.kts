@@ -138,4 +138,6 @@ dependencies {
     androidTestImplementation(AppDependencies.espressoCore)
     androidTestImplementation(AppDependencies.espressoContrib)
     androidTestImplementation(AppDependencies.mockk)
+
+    debugImplementation(AppDependencies.fragmentTesting)
 }
