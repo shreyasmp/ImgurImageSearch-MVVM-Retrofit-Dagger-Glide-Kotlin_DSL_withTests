@@ -10,7 +10,7 @@ import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.whenever
 import com.shreyas.imgurphotogallery.util.TestJsonUtils.startFragment
-import com.shreyas.nycschools.runner.ImgurRobolectricTestRunner
+import com.shreyas.imgurphotogallery.runner.ImgurRobolectricTestRunner
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

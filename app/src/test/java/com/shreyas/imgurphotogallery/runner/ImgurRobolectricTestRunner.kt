@@ -1,4 +1,4 @@
-package com.shreyas.nycschools.runner
+package com.shreyas.imgurphotogallery.runner
 
 import org.junit.runners.model.InitializationError
 import org.robolectric.RobolectricTestRunner

@@ -1,4 +1,4 @@
-package com.shreyas.nycschools.di.annotations
+package com.shreyas.imgurphotogallery.di.annotations
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

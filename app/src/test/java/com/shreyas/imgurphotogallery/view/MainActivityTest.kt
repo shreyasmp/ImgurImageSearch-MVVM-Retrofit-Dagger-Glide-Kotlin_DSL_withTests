@@ -6,7 +6,7 @@ import android.view.View
 import androidx.test.core.app.ActivityScenario.launch
 import com.google.common.truth.Truth.assertThat
 import com.shreyas.imgurphotogallery.R
-import com.shreyas.nycschools.runner.ImgurRobolectricTestRunner
+import com.shreyas.imgurphotogallery.runner.ImgurRobolectricTestRunner
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

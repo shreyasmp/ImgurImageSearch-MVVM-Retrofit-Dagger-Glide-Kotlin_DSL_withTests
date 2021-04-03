@@ -3,7 +3,7 @@ package com.shreyas.imgurphotogallery.di.modules
 import com.shreyas.imgurphotogallery.view.ImageDetailFragment
 import com.shreyas.imgurphotogallery.view.ImageSearchListFragment
 import com.shreyas.imgurphotogallery.view.MainActivity
-import com.shreyas.nycschools.di.annotations.ActivityScope
+import com.shreyas.imgurphotogallery.di.annotations.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

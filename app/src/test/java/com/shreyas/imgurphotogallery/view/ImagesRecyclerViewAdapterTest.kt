@@ -9,7 +9,7 @@ import com.shreyas.imgurphotogallery.model.ImgurResponse
 import com.shreyas.imgurphotogallery.util.TestJsonUtils.getObjectFromJsonFile
 import com.shreyas.imgurphotogallery.view.adapter.ImagesRecyclerViewAdapter
 import com.shreyas.imgurphotogallery.view.callback.ImageListItemClickListener
-import com.shreyas.nycschools.runner.ImgurRobolectricTestRunner
+import com.shreyas.imgurphotogallery.runner.ImgurRobolectricTestRunner
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
