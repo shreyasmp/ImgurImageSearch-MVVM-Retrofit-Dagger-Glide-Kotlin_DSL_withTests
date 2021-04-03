@@ -38,7 +38,7 @@ class ImageDetailFragmentAndroidTest {
             ViewActions.typeText("dogs"),
             ViewActions.pressImeActionButton()
         )
-        SystemClock.sleep(4000)
+        SystemClock.sleep(5000)
         with(onView(withId(R.id.image_searched_list))) {
             perform(
                 RecyclerViewActions.actionOnItemAtPosition<ImagesRecyclerViewAdapter.ImageViewHolder>(

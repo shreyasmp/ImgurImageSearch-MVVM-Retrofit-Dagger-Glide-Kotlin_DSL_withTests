@@ -4,8 +4,8 @@ import android.os.Build
 import android.os.Looper
 import android.view.View
 import androidx.test.core.app.ActivityScenario.launch
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
+import com.shreyas.imgurphotogallery.R
 import com.shreyas.nycschools.runner.ImgurRobolectricTestRunner
 import org.junit.Before
 import org.junit.Test
@@ -37,6 +37,12 @@ class MainActivityTest {
     fun `recreate activity`() {
         val test = launch(MainActivity::class.java)
         test.recreate()
+        assertThat(test).isNotNull()
+    }
+
+    @Test
+    fun `should have correct app name`() {
+        assertThat(activity.resources.getString(R.string.app_name)).isEqualTo("ImgurPhotoGallery")
     }
 
     @Test

@@ -10,7 +10,6 @@ import com.shreyas.imgurphotogallery.util.TestJsonUtils.getObjectFromJsonFile
 import com.shreyas.imgurphotogallery.view.adapter.ImagesRecyclerViewAdapter
 import com.shreyas.imgurphotogallery.view.callback.ImageListItemClickListener
 import com.shreyas.nycschools.runner.ImgurRobolectricTestRunner
-import io.mockk.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,9 +20,6 @@ import org.robolectric.annotation.LooperMode
 @LooperMode(LooperMode.Mode.LEGACY)
 class ImagesRecyclerViewAdapterTest {
 
-    private val mockImageListAdapter = mockk<ImagesRecyclerViewAdapter>()
-    private val mockImageListAdapterHolder =
-        mock(ImagesRecyclerViewAdapter.ImageViewHolder::class.java)
     private val mockImageList = mock(ArrayList<Images>()::class.java)
     private val mockListener = mock(ImageListItemClickListener::class.java)
     private lateinit var adapter: ImagesRecyclerViewAdapter
@@ -36,39 +32,26 @@ class ImagesRecyclerViewAdapterTest {
 
     @Test
     fun `test the school list adapter item count`() {
-        every { mockImageListAdapter.setImgurImages(loadImages()) } just Runs
-        every { mockImageListAdapter.itemCount } returns loadImages().size
-        mockImageListAdapter.setImgurImages(loadImages())
-        assertThat(mockImageListAdapter.itemCount).isEqualTo(loadImages().size)
-        verify { mockImageListAdapter.setImgurImages(loadImages()) }
-        verify { mockImageListAdapter.itemCount }
-    }
-
-    @Test
-    fun `test if adapter and view holder is not null as mockk`() {
-        val mockHolder = mockk<ImagesRecyclerViewAdapter.ImageViewHolder>()
-        assertThat(mockImageListAdapter).isNotNull()
-        assertThat(mockHolder).isNotNull()
+        adapter.setImgurImages(loadImages())
+        assertThat(adapter.itemCount).isEqualTo(loadImages().size)
     }
 
     @Test
     fun `test if adapter and view holder is not null as mockito mock`() {
-        val mockAdapter = mock(ImagesRecyclerViewAdapter::class.java)
-        assertThat(mockAdapter).isNotNull()
-        assertThat(mockImageListAdapterHolder).isNotNull()
+        assertThat(createViewHolder()).isNotNull()
     }
 
     @Test
     fun `test if view holder is bind properly`() {
-        val mockHolder = createViewHolder()
+        val viewHolder = createViewHolder()
         adapter.imageList = loadImages()
-        adapter.onBindViewHolder(mockHolder, 0)
-        mockHolder.binding.searchedImageDescription.text = loadImages()[0].description
+        adapter.onBindViewHolder(viewHolder, 0)
+        viewHolder.binding.searchedImageDescription.text = loadImages()[0].description
 
-        assertThat(mockHolder.binding.searchedImageDescription.visibility).isEqualTo(View.VISIBLE)
-        assertThat(mockHolder.binding.searchedImageDescription.text).isEqualTo("It's adorable!!!")
+        assertThat(viewHolder.binding.searchedImageDescription.visibility).isEqualTo(View.VISIBLE)
+        assertThat(viewHolder.binding.searchedImageDescription.text).isEqualTo("It's adorable!!!")
 
-        assertThat(mockHolder.binding.imageListCard.performClick())
+        assertThat(viewHolder.binding.imageListCard.performClick())
     }
 
     private fun createViewHolder(): ImagesRecyclerViewAdapter.ImageViewHolder {

@@ -43,11 +43,6 @@ class ImageSearchListFragmentTest {
     }
 
     @Test
-    fun `test if image search title is correct`() {
-        Mockito.`when`(mockContext.getString(anyInt())).thenReturn("ImgurPhotoGallery")
-    }
-
-    @Test
     fun `test options menu has search option`() {
         doNothing().whenever(mockMenuInflater).inflate(anyInt(), Mockito.any(Menu::class.java))
         Mockito.`when`(mockMenu.findItem(anyInt())).thenReturn(mockMenuItem)
