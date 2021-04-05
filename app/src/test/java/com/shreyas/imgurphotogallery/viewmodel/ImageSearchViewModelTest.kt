@@ -109,6 +109,6 @@ class ImageSearchViewModelTest : BaseViewModelTest() {
     @After
     override fun tearDown() {
         super.tearDown()
-        viewModel.imageSearchResponse.observeForever(imageListResponseObserver)
+        viewModel.imageSearchResponse.removeObserver(imageListResponseObserver)
     }
 }
