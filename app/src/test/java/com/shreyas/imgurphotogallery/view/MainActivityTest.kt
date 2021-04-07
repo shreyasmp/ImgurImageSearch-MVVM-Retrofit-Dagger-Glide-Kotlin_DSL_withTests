@@ -7,6 +7,7 @@ import androidx.test.core.app.ActivityScenario.launch
 import com.google.common.truth.Truth.assertThat
 import com.shreyas.imgurphotogallery.R
 import com.shreyas.imgurphotogallery.runner.ImgurRobolectricTestRunner
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -49,5 +50,10 @@ class MainActivityTest {
     fun `test activity view components are visible`() {
         assertThat(activity.binding.mainLayout.visibility).isEqualTo(View.VISIBLE)
         assertThat(activity.binding.mainToolbar.visibility).isEqualTo(View.VISIBLE)
+    }
+
+    @After
+    fun tearDown() {
+        activity.finish()
     }
 }

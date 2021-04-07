@@ -1,23 +1,24 @@
 package com.shreyas.imgurphotogallery.view
 
+import android.os.Looper
 import android.view.View
 import android.widget.LinearLayout
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.google.common.truth.Truth.assertThat
 import com.shreyas.imgurphotogallery.model.Images
 import com.shreyas.imgurphotogallery.model.ImgurResponse
+import com.shreyas.imgurphotogallery.runner.ImgurRobolectricTestRunner
 import com.shreyas.imgurphotogallery.util.TestJsonUtils.getObjectFromJsonFile
 import com.shreyas.imgurphotogallery.view.adapter.ImagesRecyclerViewAdapter
 import com.shreyas.imgurphotogallery.view.callback.ImageListItemClickListener
-import com.shreyas.imgurphotogallery.runner.ImgurRobolectricTestRunner
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
-import org.robolectric.annotation.LooperMode
+import org.mockito.Mockito.verify
+import org.robolectric.Shadows
 
 @RunWith(ImgurRobolectricTestRunner::class)
-@LooperMode(LooperMode.Mode.LEGACY)
 class ImagesRecyclerViewAdapterTest {
 
     private val mockImageList = mock(ArrayList<Images>()::class.java)
@@ -47,11 +48,13 @@ class ImagesRecyclerViewAdapterTest {
         adapter.imageList = loadImages()
         adapter.onBindViewHolder(viewHolder, 0)
         viewHolder.binding.searchedImageDescription.text = loadImages()[0].description
+        viewHolder.binding.imageListCard.performClick()
+        Shadows.shadowOf(Looper.getMainLooper()).idle()
 
         assertThat(viewHolder.binding.searchedImageDescription.visibility).isEqualTo(View.VISIBLE)
         assertThat(viewHolder.binding.searchedImageDescription.text).isEqualTo("It's adorable!!!")
 
-        assertThat(viewHolder.binding.imageListCard.performClick())
+        verify(mockListener).onClick(loadImages()[0])
     }
 
     private fun createViewHolder(): ImagesRecyclerViewAdapter.ImageViewHolder {
